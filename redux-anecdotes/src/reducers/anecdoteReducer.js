@@ -32,10 +32,10 @@ const reducer = (state = initialState, action) => {
         ...likedAnecdote,
         votes: likedAnecdote.votes + 1
       }
-      
-      const newState = state.map(a => a.id !== id ? a : updatedLikedAnecdote)
+
+      return state
+        .map(a => a.id !== id ? a : updatedLikedAnecdote)
         .sort((a,b) => b.votes - a.votes)
-      return newState
 
     case 'addAnecdote':
       const newAnecdote = asObject(action.content)
