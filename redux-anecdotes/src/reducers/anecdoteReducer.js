@@ -56,11 +56,10 @@ export const createAnecdote = (content) => {
   }
 }
 
-export const voting = (id) => {
-  console.log(id)
+export const voting = (data) => {
   return {
     type: 'vote',
-    data: { id }
+    data
   }
 }
 

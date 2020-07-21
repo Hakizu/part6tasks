@@ -4,9 +4,21 @@ const notificationReducer = (state = '', action) => {
   switch(action.type) {
     case 'addAnecdote':
       return action.data
+
+    case 'vote':
+      return action.data
     
+    case 'removeNoti':
+      return ''
+
     default:
       return state
+  }
+}
+
+export const removeNoti = () => {
+  return{
+    type: 'removeNoti'
   }
 }
 
