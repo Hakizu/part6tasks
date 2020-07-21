@@ -4,8 +4,12 @@ import { voting } from '../reducers/anecdoteReducer'
 import { removeNoti } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
+  const anecdotes = useSelector(({ Filter, anecdotes }) => {
+    return Filter.type === 'filter'
+      ? anecdotes.filter(a => a.content.includes(Filter.data))
+      : anecdotes
+  })
 
   const vote = (props) => {
     dispatch(voting(props))
