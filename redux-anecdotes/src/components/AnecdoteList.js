@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { voting } from '../reducers/anecdoteReducer'
-import { removeNoti } from '../reducers/notificationReducer'
+import { removeNoti, setNoti } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
   const dispatch = useDispatch()
@@ -13,9 +13,7 @@ const AnecdoteList = () => {
 
   const vote = (props) => {
     dispatch(voting(props))
-    setTimeout(() => {
-      dispatch(removeNoti())
-    }, 5000)
+    dispatch(setNoti(props , 10))
   }
 
   return (

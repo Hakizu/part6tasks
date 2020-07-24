@@ -4,7 +4,6 @@ const baseUrl = 'http://localhost:3001/anecdotes'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
-  console.log('trigger');
   return response.data
 }
 
@@ -17,11 +16,11 @@ const createNew = async (content) => {
 const update = async (id) => {
   const currentAnecdote = await axios.get(`${baseUrl}/${id}`)
 
-  const updatedNote = {
+  const updatedAnecdote = {
     ...currentAnecdote.data,
     votes: currentAnecdote.data.votes + 1
   }
-  const response = axios.put(`${baseUrl}/${id}`, updatedNote)
+  const response = axios.put(`${baseUrl}/${id}`, updatedAnecdote)
   return response
   }
 
