@@ -11,23 +11,25 @@ const AnecdoteList = (props) => {
       : props.anecdotes
   }
 
-  const vote = (props) => {}
-  //   dispatch(voting(props))
-  //   dispatch(setNoti(props , 10))
-  // }
+  const vote = (anecdote) => {
+    props.voting(anecdote)
+    props.setNoti(anecdote , 10)
+  }
 
   return (
     <div>
-      {anecdotes().map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
+      {anecdotes()
+        .sort((a,b) => b.votes - a.votes)
+        .map(anecdote =>
+          <div key={anecdote.id}>
+            <div>
+              {anecdote.content}
+            </div>
+            <div>
+              has {anecdote.votes}
+              <button onClick={() => vote(anecdote)}>vote</button>
+            </div>
           </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote)}>vote</button>
-          </div>
-        </div>
       )}
     </div>
   )

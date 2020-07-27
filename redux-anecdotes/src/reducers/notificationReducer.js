@@ -1,8 +1,6 @@
 const notificationReducer = (state = '', action) => {
   console.log('current action', action)
   switch(action.type) {
-    case 'addAnecdote':
-      return action.data
 
     case 'setNoti':
       return action.data
@@ -15,13 +13,20 @@ const notificationReducer = (state = '', action) => {
   }
 }
 
+let timeID = null
+
 export const setNoti = (data, timeout) => {
   return async dispatch => {
     dispatch({
       type: 'setNoti',
       data
     })
-    setTimeout(() => {
+
+    if (timeID) {
+      clearTimeout(timeID)
+    }
+
+    timeID = setTimeout(() => {
       dispatch(removeNoti())
     }, 5000)
   }

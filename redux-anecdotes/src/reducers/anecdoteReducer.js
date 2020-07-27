@@ -42,12 +42,11 @@ export const createAnecdote = content => {
 }
 
 export const voting = (data) => {
-  console.log(data, 'yo action');
   return async dispatch => {
     const updatedAnecdote = await anecdotesService.update(data.id)
     dispatch({
       type: 'vote',
-      data
+      data: updatedAnecdote.data
     })
   }
 }
