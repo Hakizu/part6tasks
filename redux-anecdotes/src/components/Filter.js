@@ -1,13 +1,13 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { currentFilter,noFilter } from '../reducers/filterReducer'
+import { connect } from 'react-redux'
+import { currentFilter, noFilter } from '../reducers/filterReducer'
 
-const Filter = () => {
-  const dispatch = useDispatch()
+const Filter = (props) => {
   const handleChange = (event) => {
-    dispatch(currentFilter(event.target.value))
+    
+    props.currentFilter(event.target.value)
     if (event.target.value === '') {
-      dispatch(noFilter(event.target.value))
+      props.noFilter(event.target.value)
     }
   }
 
@@ -22,4 +22,16 @@ const Filter = () => {
   )
 }
 
-export default Filter
+const mapStateToProps = (state) => {
+  return {
+    anecdotes: state.anecdotes,
+    filter: state.Filter
+  }
+}
+
+const mapDispatchToProps = {
+  noFilter,
+  currentFilter,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

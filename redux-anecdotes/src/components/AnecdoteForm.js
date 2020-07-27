@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 import { createAnecdote } from '../reducers/anecdoteReducer'
 
 const NewAnecdote = (props) => {
@@ -26,4 +26,4 @@ const NewAnecdote = (props) => {
   )
 }
 
-export default NewAnecdote
+export default connect(null, { createAnecdote })(NewAnecdote)
